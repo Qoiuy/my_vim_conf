@@ -3,7 +3,7 @@
 这些年 一个人 风也过 于也走 编程才开始入门 
 
 将本文件复制到 /user/.vim
-ln .vimrc
+ln .vimrc (ln -s ~/.vim/.vimrc ~/.vimrc )
 
 打开vim 执行 :PluginInstall
 手动安装 vimdoc:
