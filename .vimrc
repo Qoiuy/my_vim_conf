@@ -8,3 +8,6 @@ call vundle#begin()
 
 " 中文汉化 版本的 vim doc 
 Plugin 'yianwillis/vimcdoc' 
+
+" 适用于alfred youdao翻译的插件 yy 复制到vim寄存器改为 复制到系统剪切板
+nnoremap yy "*yy
