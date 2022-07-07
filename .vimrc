@@ -38,7 +38,7 @@ nnoremap <expr> yy ':<C-U>normal "*y' . v:count . 'y' . v:count . 'jO<CR>i'
 " golang 源码阅读
 " 转自链接：https://learnku.com/articles/24924
 
-set nu " 设置行号
+set rnu " 设置行号
 set cursorline "突出显示当前行
 set cursorcolumn " 突出显示当前列
 set showmatch " 显示括号匹配
@@ -64,6 +64,7 @@ set termguicolors
 " 配色方案, 可以从上面插件安装中的选择一个使用 
 " TODO 删除
 colorscheme one " 主题
+set background=dark
 
 
 " golang 源码阅读
