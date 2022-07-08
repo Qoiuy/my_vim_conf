@@ -5,4 +5,5 @@
 		:echo "count is" i
 		:let i += 1
 	:endwhile
-endfunction
+:endfunction
+
