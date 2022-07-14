@@ -31,7 +31,7 @@ call vundle#end()
 "1. 复制n行到系统剪切板 参考vim实用技巧。"*yy
 "2. 向下n行 参考 https://www.thinbug.com/q/37216417 文章 下的评论 <c-u> 实现
 "3. 插入一个新行
-nnoremap <expr> yy ':<C-U>normal "*y' . v:count . 'y' . v:count . 'jO<CR>i'
+"nnoremap <expr> yy ':<C-U>normal "*y' . v:count . 'y' . v:count . 'jO<CR>i'
 
 
 "==============================================================================
@@ -53,6 +53,7 @@ let mapleader=";"
 "nmap <Leader>c "+yy
 " n 模式下粘贴系统剪切板的内容
 nmap <Leader>v "+p
+nmap <Leader>y "ap
 
 
 "====================================================================
