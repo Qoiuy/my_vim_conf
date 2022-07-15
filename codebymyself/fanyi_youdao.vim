@@ -31,7 +31,13 @@
 :function HandlerYoudaoResult (channel, msg)
 
   " 将翻译结果写入到寄存器
-  :call setreg("a", a:msg)
+  ":call setreg("a", a:msg)
+  :call setreg("c", a:msg, 'c')
+  :call setreg("v", a:msg, 'v')
+  :call setreg("y", a:msg, 'V')
+  :call setreg("l", a:msg, 'l')
+  :call setreg("i", a:msg, '<CRTL-V>')
+  :call setreg("b", a:msg, 'b')
 
 :endfunction
 
