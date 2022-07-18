@@ -14,10 +14,14 @@
 
 	:let s:cmd = printf("%s", ydShell)  " 将取到的数据拼成一个 youdao 翻译的shell
 	:for s:line in s:body
-	    let line = s:line
+
+	    let line = s:line  " 解决 包含(的文本无法翻译的问题
 	    let line = substitute(line, '(', '（', 'g')
         let line = substitute(line, ')', '）', 'g')
-	    " 解决 包含(的文本无法翻译的问题
+
+        let line = substitute(line, "'", "‘", "g") "  解决 包含'的文本无法翻译的问题
+        let line = substitute(line, '"', '‘', 'g') "  解决 包含'的文本无法翻译的问题
+
 		:let s:cmd = printf("%s %s ", s:cmd, line)
     :endfor
 	":echomsg s:cmd
@@ -39,5 +43,7 @@
 
 :endfunction
 
-nnoremap <expr> yy ':<C-U>call RunYoudao(' . v:count . ')<CR>' . v:count . 'jo<Esc>'
+"nnoremap <expr> yy ':<C-U>call RunYoudao(' . v:count . ')<CR>' . v:count . 'jo<Esc>'
+" 经过使用发现不需要新建一行
+nnoremap <expr> yy ':<C-U>call RunYoudao(' . v:count . ')<CR>' . v:count . 'j'
 nmap <Leader>y "ap
