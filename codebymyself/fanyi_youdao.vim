@@ -1,17 +1,22 @@
 " 打开vim 执行  :call RunYoudao()
 " 执行有道翻译 1. 支持参数 2. 翻译结果放在 vim寄存器里
-:function RunYoudao(nnumber)
+:function RunYoudao(n_line)
 
 	" alfred-youdao shell  环境变量在~/.zshrc里面设置的
 	:let ydShell = "~/.vim/codebymyself/alfred-youdao gcd "
 
 	" 清空数据操作
-    :call setreg("a", '') " 清空寄存器
+	:call setreg("a", '') " 清空寄存器
+    :call setreg("b", '')
+    :call setreg("c", '')
+    :call setreg("v", '')
+    :call setreg("y", '')
+    :call setreg("z", '')
 
-	" 取当前行向下3行 的内容
-	:let s:line_number = line(".")
-	":let a:nnumber = 1
-	:let s:body = getline(s:line_number, s:line_number+a:nnumber)
+	" 取当前行向下n行 的内容
+	:let s:curr_line = line(".")
+	":let a:n_line = 1
+	:let s:body = getline(s:curr_line, s:curr_line+a:n_line)
 
 	" 将取到的数据拼成一个 youdao 翻译的shell
 	:let s:cmd = printf("%s", ydShell)
@@ -30,17 +35,15 @@
 " HandlerYoudaoResult 有道翻译结果的处理
 :function HandlerYoudaoResult (channel, msg)
 
-  " 将翻译结果写入到寄存器
-  ":call setreg("a", a:msg)
-  :call setreg("c", a:msg, 'c')
-  :call setreg("v", a:msg, 'v')
-  :call setreg("y", a:msg, 'V')
-  :call setreg("l", a:msg, 'l')
-  :call setreg("i", a:msg, '<CRTL-V>')
-  :call setreg("b", a:msg, 'b')
+    :echomsg a:msg
+
+    " golang代码里 print \n 一次 调用改方法一次
+    ":echomsg "n次\n"
+
+    " 将翻译结果写入到寄存器
+    :call setreg("a", printf("%s\n", a:msg), "a")
 
 :endfunction
-
 
 nnoremap <expr> yy ':<C-U>call RunYoudao(' . v:count . ')<CR>' . v:count . 'jo<Esc>'
 nmap <Leader>y "ap
