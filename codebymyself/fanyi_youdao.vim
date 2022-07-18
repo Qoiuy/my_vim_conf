@@ -7,21 +7,18 @@
 
 	" 清空数据操作
 	:call setreg("a", '') " 清空寄存器
-    :call setreg("b", '')
-    :call setreg("c", '')
-    :call setreg("v", '')
-    :call setreg("y", '')
-    :call setreg("z", '')
 
 	" 取当前行向下n行 的内容
 	:let s:curr_line = line(".")
-	":let a:n_line = 1
-	:let s:body = getline(s:curr_line, s:curr_line+a:n_line)
+	:let s:body = getline(s:curr_line, s:curr_line+a:n_line)  	"想测试的话  可以使用 :let a:n_line = 1
 
-	" 将取到的数据拼成一个 youdao 翻译的shell
-	:let s:cmd = printf("%s", ydShell)
+	:let s:cmd = printf("%s", ydShell)  " 将取到的数据拼成一个 youdao 翻译的shell
 	:for s:line in s:body
-		:let s:cmd = printf("%s %s ", s:cmd, s:line)
+	    let line = s:line
+	    let line = substitute(line, '(', '（', 'g')
+        let line = substitute(line, ')', '）', 'g')
+	    " 解决 包含(的文本无法翻译的问题
+		:let s:cmd = printf("%s %s ", s:cmd, line)
     :endfor
 	":echomsg s:cmd
 
@@ -35,10 +32,7 @@
 " HandlerYoudaoResult 有道翻译结果的处理
 :function HandlerYoudaoResult (channel, msg)
 
-    :echomsg a:msg
-
-    " golang代码里 print \n 一次 调用改方法一次
-    ":echomsg "n次\n"
+    ":echomsg "n次\n" " golang代码里 print \n 一次 调用改方法一次
 
     " 将翻译结果写入到寄存器
     :call setreg("a", printf("%s\n", a:msg), "a")
