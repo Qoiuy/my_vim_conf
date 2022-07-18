@@ -45,5 +45,5 @@
 
 "nnoremap <expr> yy ':<C-U>call RunYoudao(' . v:count . ')<CR>' . v:count . 'jo<Esc>'
 " 经过使用发现不需要新建一行
-nnoremap <expr> yy ':<C-U>call RunYoudao(' . v:count . ')<CR>' . v:count . 'j'
-nmap <Leader>y "ap
+nnoremap <expr> mm ':<C-U>call RunYoudao(' . v:count . ')<CR>' . v:count . 'j'
+nmap <Leader>m "ap
